@@ -23,7 +23,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 };
 ---
 
-<article class="py-6 border-b border-slate-200 last:border-none">
+<article class="py-6 border-b border-slate-200 last:border-none relative">
   <div class="flex items-center gap-3 flex-wrap mb-2">
     <span class="text-xs font-semibold tracking-widest uppercase text-indigo-600">
       {pillarLabels[pillar] ?? pillar}
@@ -39,7 +39,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   <h2 class="font-semibold text-xl tracking-tight leading-snug mb-1.5">
     <a
       href={`/blog/${slug}`}
-      class="text-slate-900 hover:text-indigo-600 transition-colors no-underline"
+      class="text-slate-900 hover:text-indigo-600 transition-colors no-underline after:absolute after:inset-0"
     >
       {title}
     </a>
