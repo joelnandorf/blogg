@@ -1,0 +1,104 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags: string[];
+  pillar: string;
+}
+
+const { title, description, pubDate, updatedDate, tags, pillar } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const pillarLabels: Record<string, string> = {
+  'ai-arkitektur': 'AI-arkitektur',
+  'tech-lead': 'Tech lead',
+  'rollkonvergens': 'Rollkonvergens',
+};
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+---
+
+<BaseLayout
+  title={`${title} — Shift+Build`}
+  description={description}
+  canonicalURL={canonicalURL}
+  ogTitle={title}
+  ogDescription={description}
+  showProgress={true}
+>
+  <article class="app-layout py-12 md:py-16">
+    <header class="mb-10 pb-8 border-b border-border">
+      <div class="flex items-center gap-3 flex-wrap mb-4">
+        <span class="text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-2.5 py-1 rounded">
+          {pillarLabels[pillar] ?? pillar}
+        </span>
+        <time
+          datetime={pubDate.toISOString()}
+          class="text-sm text-muted-foreground font-lipi-sans"
+        >
+          {pubDate.toLocaleDateString('sv-SE', dateOptions)}
+        </time>
+        {updatedDate && updatedDate > pubDate && (
+          <span class="text-sm text-muted-foreground italic">
+            Uppdaterad {updatedDate.toLocaleDateString('sv-SE', dateOptions)}
+          </span>
+        )}
+      </div>
+
+      <h1 class="font-lipi-sans text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-3">
+        {title}
+      </h1>
+      <p class="text-lg text-muted-foreground font-lipi-sans leading-relaxed">
+        {description}
+      </p>
+
+      {tags.length > 0 && (
+        <div class="flex gap-2 flex-wrap mt-4">
+          {tags.map(tag => (
+            <span class="font-lipi-mono text-xs text-muted-foreground bg-muted border border-border rounded px-2 py-0.5">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="app-prose">
+      <slot />
+    </div>
+
+    <footer class="mt-12">
+      <hr class="border-border mb-8" />
+      <div class="bg-card border border-border rounded-lg p-5 mb-6">
+        <p class="text-sm font-lipi-sans mb-1">
+          <strong>Joel Nandorf</strong> är tech lead i Umeå och skriver om AI-arkitektur,
+          tekniskt ledarskap och hur rollerna inom produktutveckling konvergerar.
+        </p>
+        <p class="text-sm text-muted-foreground font-lipi-sans">
+          Gillade du det här? Följ via{' '}
+          <a href="/rss.xml" class="text-primary hover:underline">RSS</a> eller hör av dig på{' '}
+          <a
+            href="https://www.linkedin.com/in/joelnandorf"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="text-primary hover:underline"
+          >LinkedIn</a> — jag svarar gärna.
+        </p>
+      </div>
+      <a
+        href="/"
+        class="text-sm text-muted-foreground hover:text-primary transition-colors font-lipi-sans"
+      >
+        ← Alla inlägg
+      </a>
+    </footer>
+  </article>
+</BaseLayout>
