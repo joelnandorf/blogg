@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  tags: string[];
+  pillar: string;
+}
+
+const { title, description, pubDate, slug, tags, pillar } = Astro.props;
+
+const pillarLabels: Record<string, string> = {
+  'ai-arkitektur': 'AI-arkitektur',
+  'tech-lead': 'Tech lead',
+  'rollkonvergens': 'Rollkonvergens',
+};
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+---
+
+<article class="py-6 border-b border-border last:border-none group">
+  <div class="flex items-center gap-3 flex-wrap mb-2">
+    <span class="text-xs font-semibold tracking-widest uppercase text-primary font-lipi-sans">
+      {pillarLabels[pillar] ?? pillar}
+    </span>
+    <time
+      datetime={pubDate.toISOString()}
+      class="text-sm text-muted-foreground font-lipi-sans"
+    >
+      {pubDate.toLocaleDateString('sv-SE', dateOptions)}
+    </time>
+  </div>
+
+  <h2 class="font-lipi-sans font-semibold text-xl tracking-tight leading-snug mb-1.5">
+    <a
+      href={`/blog/${slug}`}
+      class="text-foreground hover:text-primary transition-colors no-underline"
+    >
+      {title}
+    </a>
+  </h2>
+
+  <p class="font-lipi-serif text-muted-foreground text-[0.9375rem] leading-relaxed mb-3">
+    {description}
+  </p>
+
+  {tags.length > 0 && (
+    <div class="flex gap-2 flex-wrap">
+      {tags.map(tag => (
+        <span class="font-lipi-mono text-xs text-muted-foreground bg-muted border border-border rounded px-2 py-0.5">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+</article>
