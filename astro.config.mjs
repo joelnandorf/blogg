@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://joelnandorf.github.io',
-  base: '/shiftandbuild',
+  base: '/',
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
