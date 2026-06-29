@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title, description, pubDate, slug, tags, pillar } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const pillarLabels: Record<string, string> = {
   'ai-arkitektur': 'AI-arkitektur',
@@ -38,7 +39,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
   <h2 class="font-semibold text-xl tracking-tight leading-snug mb-1.5">
     <a
-      href={`/blog/${slug}`}
+      href={`${base}/blog/${slug}`}
       class="text-slate-900 hover:text-indigo-600 transition-colors no-underline after:absolute after:inset-0"
     >
       {title}

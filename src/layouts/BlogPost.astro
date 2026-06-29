@@ -13,6 +13,8 @@ interface Props {
 const { title, description, pubDate, updatedDate, tags, pillar } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const pillarLabels: Record<string, string> = {
   'ai-arkitektur': 'AI-arkitektur',
   'tech-lead': 'Tech lead',
@@ -83,7 +85,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
         </p>
         <p class="text-sm text-slate-500">
           Gillade du det här? Följ via{' '}
-          <a href="/rss.xml" class="text-indigo-600 hover:underline">RSS</a> eller hör av dig på{' '}
+          <a href={`${base}/rss.xml`} class="text-indigo-600 hover:underline">RSS</a> eller hör av dig på{' '}
           <a
             href="https://www.linkedin.com/in/joelnandorf"
             rel="noopener noreferrer"
@@ -93,7 +95,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
         </p>
       </div>
       <a
-        href="/"
+        href={base || '/'}
         class="text-sm text-slate-500 hover:text-indigo-600 transition-colors"
       >
         ← Alla inlägg

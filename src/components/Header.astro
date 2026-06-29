@@ -1,8 +1,10 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const navLinks = [
-  { href: '/', label: 'Inlägg' },
-  { href: '/om', label: 'Om' },
-  { href: '/rss.xml', label: 'RSS' },
+  { href: base || '/', label: 'Inlägg' },
+  { href: `${base}/om`, label: 'Om' },
+  { href: `${base}/rss.xml`, label: 'RSS' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -12,7 +14,7 @@ const currentPath = Astro.url.pathname;
   <div class="app-layout">
     <div class="flex items-center justify-between h-14">
       <a
-        href="/"
+        href={base || '/'}
         class="font-bold text-base tracking-tight text-slate-900 hover:text-slate-700 no-underline"
         aria-label="Shift+Build — hem"
       >

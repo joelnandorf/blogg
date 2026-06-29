@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout
@@ -76,7 +78,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <p>
         Hör av dig på <a href="https://www.linkedin.com/in/joelnandorf" rel="noopener noreferrer" target="_blank">LinkedIn</a>,
-        eller följ via <a href="/rss.xml">RSS</a> så missar du inget. Längre artiklar
+        eller följ via <a href={`${base}/rss.xml`}>RSS</a> så missar du inget. Längre artiklar
         korsläggs på <a href="https://substack.com/@joelnandorf" rel="noopener noreferrer" target="_blank">Substack</a>.
       </p>
     </div>

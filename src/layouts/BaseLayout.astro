@@ -18,6 +18,8 @@ const {
   ogTitle = title,
   ogDescription = description,
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -25,9 +27,9 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" type="application/rss+xml" title="Shift+Build RSS" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Shift+Build RSS" href={`${base}/rss.xml`} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
