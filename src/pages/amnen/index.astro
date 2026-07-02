@@ -1,10 +1,10 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-import { TOPICS } from "../../lib/topics";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { TOPICS } from '../../lib/topics';
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const topicsWithCount = TOPICS.map((topic) => ({
   ...topic,

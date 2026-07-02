@@ -1,7 +1,7 @@
 export const TOPICS = [
-  { slug: "ai-arkitektur", label: "AI-arkitektur" },
-  { slug: "tech-lead", label: "Tech lead" },
-  { slug: "rollkonvergens", label: "Rollkonvergens" },
+  { slug: 'ai-arkitektur', label: 'AI-arkitektur' },
+  { slug: 'tech-lead', label: 'Tech lead' },
+  { slug: 'rollkonvergens', label: 'Rollkonvergens' },
 ] as const;
 
 export function getTopicLabel(slug: string): string {

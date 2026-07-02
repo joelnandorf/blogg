@@ -1,10 +1,10 @@
 ---
-title: "Design systems i en AI-assisterad kodbas"
-description: "Vad som faktiskt förändras när AI-assistenter skriver koden — och vad det ställer för krav på hur vi definierar komponentbibliotek och designtokens."
+title: 'Design systems i en AI-assisterad kodbas'
+description: 'Vad som faktiskt förändras när AI-assistenter skriver koden — och vad det ställer för krav på hur vi definierar komponentbibliotek och designtokens.'
 pubDate: 2026-06-28
 updatedDate: 2026-06-28
-tags: ["ai", "design-systems", "arkitektur", "komponenter"]
-topic: "ai-arkitektur"
+tags: ['ai', 'design-systems', 'arkitektur', 'komponenter']
+topic: 'ai-arkitektur'
 draft: false
 ---
 
@@ -67,7 +67,7 @@ interface FieldProps {
   error?: string;
   hint?: string;
   disabled?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
 }
 
 // Version 2 — semantiskt orienterat

@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ArticleCard from "../../components/ArticleCard.astro";
-import { getCollection } from "astro:content";
-import { TOPICS, getTopicLabel } from "../../lib/topics";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+import { TOPICS, getTopicLabel } from '../../lib/topics';
 
 export async function getStaticPaths() {
   return TOPICS.map((topic) => ({ params: { topic: topic.slug } }));
@@ -11,10 +11,10 @@ export async function getStaticPaths() {
 const { topic } = Astro.params;
 
 const posts = (
-  await getCollection("blog", ({ data }) => !data.draft && data.topic === topic)
+  await getCollection('blog', ({ data }) => !data.draft && data.topic === topic)
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const label = getTopicLabel(topic);
 ---
 
@@ -51,7 +51,7 @@ const label = getTopicLabel(topic);
                 title={post.data.title}
                 description={post.data.description}
                 pubDate={post.data.pubDate}
-                slug={post.id.replace(/\.md$/, "")}
+                slug={post.id.replace(/\.md$/, '')}
                 tags={post.data.tags}
                 topic={post.data.topic}
                 heroImage={post.data.heroImage}
