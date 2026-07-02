@@ -1,8 +1,8 @@
-import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z
       .object({
@@ -11,14 +11,14 @@ const blog = defineCollection({
         pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         tags: z.array(z.string()).default([]),
-        topic: z.enum(['ai-arkitektur', 'tech-lead', 'rollkonvergens']),
+        topic: z.enum(["ai-arkitektur", "tech-lead", "rollkonvergens"]),
         draft: z.boolean().default(false),
         heroImage: image().optional(),
         heroImageAlt: z.string().optional(),
       })
-      .refine(data => !data.heroImage || !!data.heroImageAlt, {
-        message: 'heroImageAlt is required when heroImage is set',
-        path: ['heroImageAlt'],
+      .refine((data) => !data.heroImage || !!data.heroImageAlt, {
+        message: "heroImageAlt is required when heroImage is set",
+        path: ["heroImageAlt"],
       }),
 });
 
